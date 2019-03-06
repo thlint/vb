@@ -29,6 +29,7 @@
         Num = 74
         DW3 = CType(Num, String) 'Преобразуем число в строку
         MessageBox.Show(DW2 + vbCrLf + DW3)
+        Form3.Show()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -47,5 +48,11 @@
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Form2.Show()
+    End Sub
+
+
+
+    Private Sub MyStructures_Click(sender As Object, e As EventArgs) Handles MyStructures.Click
+
     End Sub
 End Class

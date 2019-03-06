@@ -28,6 +28,7 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.MyStructures = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -75,11 +76,23 @@ Partial Class Form1
         Me.Button4.Text = "Список пользователей"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'MyStructures
+        '
+        Me.MyStructures.AllowDrop = True
+        Me.MyStructures.AutoEllipsis = True
+        Me.MyStructures.Location = New System.Drawing.Point(78, 352)
+        Me.MyStructures.Name = "MyStructures"
+        Me.MyStructures.Size = New System.Drawing.Size(75, 23)
+        Me.MyStructures.TabIndex = 5
+        Me.MyStructures.Text = "Структуры"
+        Me.MyStructures.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.MyStructures)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
@@ -98,4 +111,5 @@ Partial Class Form1
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents MyStructures As Button
 End Class
