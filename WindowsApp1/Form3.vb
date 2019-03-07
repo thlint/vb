@@ -1,4 +1,16 @@
-﻿Public Class Form3
+﻿Imports System.DirectoryServices
+
+Public Class Form3
+    'Dim dirs As DirectoryEntry = New DirectoryEntry("WinNTP://" + "css-rzd.local", "NBAH", "QwErTy123", AuthenticationTypes.ReadonlyServer)
+    'Dim DomainSearcher As DirectorySearcher = New DirectorySearcher(dirs)
+
+    Dim entry As New DirectoryEntry("LDAP://OU=ITS,OU=Humans,OU=VLANs,DC=CSS-RZD,DC=local", "NBAH", "QwErTy123")
+    Dim mySearcher As New DirectorySearcher(entry)
+    ' Create a SearchResultCollection object to hold a collection of SearchResults
+    ' returned by the FindAll method.
+    Dim result As SearchResultCollection = mySearcher.FindAll()
+    Dim resEnt1 As SearchResult
+
     Private Enum Sports As Integer
         voleyball = 0
         baseball = 1
@@ -32,6 +44,27 @@
         End Select
     End Sub
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ListView1.View = View.Details
+        ListView1.GridLines = True
+        ListView1.Columns.Add("Name", 250)
+        ListView1.Columns.Add("Guid", 230)
+        ListView1.FullRowSelect = True
 
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+        For Each de As DirectoryEntry In entry.Children
+            If (de.SchemaClassName = "user") Then
+                Dim item As ListViewItem = New ListViewItem({de.Name, de.Path})
+                ListView1.Items.Add(item)
+
+            End If
+        Next
+
+    End Sub
+
+
+
 End Class
