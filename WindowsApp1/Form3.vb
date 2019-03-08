@@ -1,15 +1,15 @@
 ﻿Imports System.DirectoryServices
 
 Public Class Form3
-    'Dim dirs As DirectoryEntry = New DirectoryEntry("WinNTP://" + "css-rzd.local", "NBAH", "QwErTy123", AuthenticationTypes.ReadonlyServer)
+    'Dim dirs As DirectoryEntry = New DirectoryEntry("//" + "css-rzd.local", "NBAH", "QwErTy123", AuthenticationTypes.ReadonlyServer)
     'Dim DomainSearcher As DirectorySearcher = New DirectorySearcher(dirs)
 
-    Dim entry As New DirectoryEntry("LDAP://OU=ITS,OU=Humans,OU=VLANs,DC=CSS-RZD,DC=local", "NBAH", "QwErTy123")
+    Dim entry As New DirectoryEntry("LDAP://mirkwood.css-rzd.local/OU=ITS,OU=Humans,OU=VLANs,DC=CSS-RZD,DC=local", "NBAH", "QwErTy123")
     Dim mySearcher As New DirectorySearcher(entry)
     ' Create a SearchResultCollection object to hold a collection of SearchResults
     ' returned by the FindAll method.
-    Dim result As SearchResultCollection = mySearcher.FindAll()
-    Dim resEnt1 As SearchResult
+    '    Dim result As SearchResultCollection = mySearcher.FindAll()
+    '   Dim resEnt1 As SearchResult
 
     Private Enum Sports As Integer
         voleyball = 0
