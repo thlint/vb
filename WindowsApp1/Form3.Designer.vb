@@ -26,20 +26,21 @@ Partial Class Form3
         Me.Analyze = New System.Windows.Forms.Button()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.myList = New System.Windows.Forms.ListView()
         Me.SuspendLayout()
         '
         'ComboSports
         '
         Me.ComboSports.FormattingEnabled = True
         Me.ComboSports.Items.AddRange(New Object() {"Волейбол", "Бейсбол", "Футбол", "Гандбол"})
-        Me.ComboSports.Location = New System.Drawing.Point(411, 46)
+        Me.ComboSports.Location = New System.Drawing.Point(519, 46)
         Me.ComboSports.Name = "ComboSports"
-        Me.ComboSports.Size = New System.Drawing.Size(280, 21)
+        Me.ComboSports.Size = New System.Drawing.Size(172, 21)
         Me.ComboSports.TabIndex = 0
         '
         'Analyze
         '
-        Me.Analyze.Location = New System.Drawing.Point(501, 116)
+        Me.Analyze.Location = New System.Drawing.Point(519, 116)
         Me.Analyze.Name = "Analyze"
         Me.Analyze.Size = New System.Drawing.Size(123, 29)
         Me.Analyze.TabIndex = 1
@@ -63,11 +64,20 @@ Partial Class Form3
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'myList
+        '
+        Me.myList.Location = New System.Drawing.Point(32, 22)
+        Me.myList.Name = "myList"
+        Me.myList.Size = New System.Drawing.Size(481, 123)
+        Me.myList.TabIndex = 4
+        Me.myList.UseCompatibleStateImageBehavior = False
+        '
         'Form3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.myList)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Analyze)
@@ -82,4 +92,5 @@ Partial Class Form3
     Friend WithEvents Analyze As Button
     Friend WithEvents ListView1 As ListView
     Friend WithEvents Button1 As Button
+    Friend WithEvents myList As ListView
 End Class

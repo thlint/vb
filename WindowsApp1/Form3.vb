@@ -1,15 +1,12 @@
 ﻿Imports System.DirectoryServices
 
 Public Class Form3
-    'Dim dirs As DirectoryEntry = New DirectoryEntry("//" + "css-rzd.local", "NBAH", "QwErTy123", AuthenticationTypes.ReadonlyServer)
-    'Dim DomainSearcher As DirectorySearcher = New DirectorySearcher(dirs)
-
-    Dim entry As New DirectoryEntry("LDAP://mirkwood.css-rzd.local/OU=ITS,OU=Humans,OU=VLANs,DC=CSS-RZD,DC=local", "NBAH", "QwErTy123")
-    Dim mySearcher As New DirectorySearcher(entry)
+    Dim entry As New DirectoryEntry("LDAP://mirkwood.css-rzd.local/OU=Humans,OU=VLANs,DC=CSS-RZD,DC=local", "NBAH", "QwErTy123")
+    Dim mySearcher As New DirectorySearcher(entry, "(memberOf=CN=ЦССНСИ,OU=Groups,DC=CSS-RZD,DC=local)")
+    ' примеры фильтров https://bga68.livejournal.com/24636.html
     ' Create a SearchResultCollection object to hold a collection of SearchResults
     ' returned by the FindAll method.
-    '    Dim result As SearchResultCollection = mySearcher.FindAll()
-    '   Dim resEnt1 As SearchResult
+    Dim result As SearchResultCollection = mySearcher.FindAll()
 
     Private Enum Sports As Integer
         voleyball = 0
@@ -26,7 +23,6 @@ Public Class Form3
         If ComboSports.SelectedIndex <> -1 Then
             mySport = ComboSports.SelectedIndex
         End If
-
     End Sub
 
     Private Sub AnalyzeSport(ByVal sportslist As Sports)
@@ -43,28 +39,28 @@ Public Class Form3
                 MsgBox("Не выбран ни один спорт")
         End Select
     End Sub
+
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        MessageBox.Show("Найдено объектов в каталоге: " + result.Count.ToString)
         ListView1.View = View.Details
         ListView1.GridLines = True
-        ListView1.Columns.Add("Name", 250)
-        ListView1.Columns.Add("Guid", 230)
+        ListView1.Columns.Add("sAMAccountName", 150)
+        ListView1.Columns.Add("Name", 330)
         ListView1.FullRowSelect = True
-
+        myList.View = View.Details
+        myList.Columns.Add("сек.", 20)
+        myList.Columns.Add("мс.", 30)
+        myList.Columns.Add("тики = 0,1 мкс.", 200)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-
-        For Each de As DirectoryEntry In entry.Children
-            If (de.SchemaClassName = "user") Then
-                Dim item As ListViewItem = New ListViewItem({de.Name, de.Path})
-                ListView1.Items.Add(item)
-
-            End If
+        Dim MyTime As DateTime = DateTime.Now
+        Dim myListField As ListViewItem = New ListViewItem({MyTime.Second, MyTime.Millisecond, MyTime.Ticks})
+        myList.Items.Add(myListField)
+        For Each MyUser As SearchResult In result
+            Dim item As ListViewItem = New ListViewItem({MyUser.Properties("sAMAccountName")(0), MyUser.Properties("Name")(0)})
+            ListView1.Items.Add(item)
         Next
-
     End Sub
-
-
 
 End Class
