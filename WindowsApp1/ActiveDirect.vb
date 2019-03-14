@@ -1,6 +1,6 @@
 ﻿Imports System.DirectoryServices
 
-Public Class Form3
+Public Class ActiveDirect
     Dim entry As New DirectoryEntry("LDAP://mirkwood.css-rzd.local/OU=Humans,OU=VLANs,DC=CSS-RZD,DC=local", "NBAH", "QwErTy123")
     Dim mySearcher As New DirectorySearcher(entry, "(memberOf=CN=ЦССНСИ,OU=Groups,DC=CSS-RZD,DC=local)")
     ' примеры фильтров https://bga68.livejournal.com/24636.html
@@ -44,8 +44,8 @@ Public Class Form3
         MessageBox.Show("Найдено объектов в каталоге: " + result.Count.ToString)
         ListView1.View = View.Details
         ListView1.GridLines = True
-        ListView1.Columns.Add("sAMAccountName", 150)
         ListView1.Columns.Add("Name", 330)
+        ListView1.Columns.Add("Mail", 330)
         ListView1.FullRowSelect = True
         myList.View = View.Details
         myList.Columns.Add("сек.", 20)
@@ -58,7 +58,7 @@ Public Class Form3
         Dim myListField As ListViewItem = New ListViewItem({MyTime.Second, MyTime.Millisecond, MyTime.Ticks})
         myList.Items.Add(myListField)
         For Each MyUser As SearchResult In result
-            Dim item As ListViewItem = New ListViewItem({MyUser.Properties("sAMAccountName")(0), MyUser.Properties("Name")(0)})
+            Dim item As ListViewItem = New ListViewItem({MyUser.Properties("Name")(0), MyUser.Properties("Mail")(0)})
             ListView1.Items.Add(item)
         Next
     End Sub
