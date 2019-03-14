@@ -29,6 +29,7 @@ Public Class MyDB
         Dim MyTime As DateTime = DateTime.Now
         c.CommandText = "insert into Users values('email@" + MyTime.Millisecond.ToString + "','Иванов Иван Иванович')" '
         c.ExecuteNonQuery() 'Выполнить команду не получая ответ на запрос
+        RefrecshGrid()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -39,12 +40,12 @@ Public Class MyDB
         Dim MyTime As DateTime = DateTime.Now
         email2delete = Grid1.CurrentRow.Cells("email").Value
         c.CommandText = "delete from Users where Email ='" & email2delete & "'"
-        Dim MyMessageBoxResult As Integer
         If MsgBox(c.CommandText, MsgBoxStyle.YesNo, "Удаление записи") = MsgBoxResult.Yes Then
             c.ExecuteNonQuery() 'Выполнить команду не получая ответ на запрос
-            MsgBox("пользователь удален")
+            RefrecshGrid()
+            MsgBox("Пользователь удален")
         Else
-            MsgBox("Пользователь не удален, код = " & MyMessageBoxResult)
+            MsgBox("Пользователь не удален")
         End If
     End Sub
 End Class
