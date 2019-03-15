@@ -6,30 +6,52 @@ Public Class MyDB
     End Sub
 
     Private Sub RefrecshGrid()
-        Dim c As New OleDbCommand 'команда с запросом к БД
+        Dim c As New OleDbCommand("select * from Users") 'команда с запросом к БД
         c.Connection = conn ' к какой базе подключаться ( к какому коннектору)
-        c.CommandText = "select * from Users" ' Текст запроса
         Dim da As New OleDbDataAdapter(c) 'Адаптер связан с командой а команда связана с коннектором
         Dim ds As New DataSet ' в этом объекте хранятся таблицы
-        da.Fill(ds, "MSubjects")
+        da.Fill(ds, "MSubjects") 'ds- а-ля локальная БД, VSbujects а-ля таблица - результат команды селект
         Grid1.DataSource = ds
         Grid1.DataMember = "Msubjects"
     End Sub
 
+    Private Sub RefreshGridEvens()
+
+    End Sub
+
     Private Sub MyDB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Dim conn As System.Data.OleDb.OleDbConnection т.к. в первой строке прописан импорт, можем обращаться по короктому имени
-        conn = New OleDb.OleDbConnection
-        conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\db\ttt.accdb;Persist Security Info=False;"
+        ' открываем соединение
+        conn = New OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\db\ttt.accdb;Persist Security Info=False;")
         conn.Open()
+        RefrecshGrid()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim MyDate As DateTime
+        Dim MyWinn, MyLoos As String
+        Dim MyCount As Integer
+        Dim r As DialogResult
+        MyDBForm2.ShowDialog()
+        MyDate = MyDBForm2.DateTimePicker1.Value
+        MyWinn = MyDBForm2.ComboBox1.Text
+        MyLoos = MyDBForm2.ComboBox2.Text
+        MyCount = CInt(MyDBForm2.TextBox1.Text)
+        r = MyDBForm2.DialogResult
+        Form2.Close()
+
+        If r <> DialogResult.OK Then
+            Exit Sub
+        End If
+
         Dim c As New OleDbCommand
         c.Connection = conn 'conn объявлена в модуле
         Dim MyTime As DateTime = DateTime.Now
-        c.CommandText = "insert into Users values('email@" + MyTime.Millisecond.ToString + "','Иванов Иван Иванович')" '
+        c.CommandText = "insert into Events values(#" & MyDate & "#, " & MyWinn & "','" & MyLoos & "'," & MyCount & ")"
         c.ExecuteNonQuery() 'Выполнить команду не получая ответ на запрос
         RefrecshGrid()
+
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -43,9 +65,6 @@ Public Class MyDB
         If MsgBox(c.CommandText, MsgBoxStyle.YesNo, "Удаление записи") = MsgBoxResult.Yes Then
             c.ExecuteNonQuery() 'Выполнить команду не получая ответ на запрос
             RefrecshGrid()
-            MsgBox("Пользователь удален")
-        Else
-            MsgBox("Пользователь не удален")
         End If
     End Sub
 End Class

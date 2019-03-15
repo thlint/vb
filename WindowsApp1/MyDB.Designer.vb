@@ -26,7 +26,9 @@ Partial Class MyDB
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.DataGridViewEvents = New System.Windows.Forms.DataGridView()
         CType(Me.Grid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewEvents, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid1
@@ -37,7 +39,7 @@ Partial Class MyDB
         Me.Grid1.Location = New System.Drawing.Point(21, 22)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
-        Me.Grid1.Size = New System.Drawing.Size(377, 313)
+        Me.Grid1.Size = New System.Drawing.Size(305, 313)
         Me.Grid1.TabIndex = 0
         '
         'Button1
@@ -51,7 +53,7 @@ Partial Class MyDB
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(175, 363)
+        Me.Button2.Location = New System.Drawing.Point(130, 362)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
@@ -60,18 +62,27 @@ Partial Class MyDB
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(316, 363)
+        Me.Button3.Location = New System.Drawing.Point(244, 363)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(82, 22)
         Me.Button3.TabIndex = 3
         Me.Button3.Text = "Удалить"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'DataGridViewEvents
+        '
+        Me.DataGridViewEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewEvents.Location = New System.Drawing.Point(433, 22)
+        Me.DataGridViewEvents.Name = "DataGridViewEvents"
+        Me.DataGridViewEvents.Size = New System.Drawing.Size(505, 313)
+        Me.DataGridViewEvents.TabIndex = 4
+        '
         'MyDB
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1101, 450)
+        Me.Controls.Add(Me.DataGridViewEvents)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -79,6 +90,7 @@ Partial Class MyDB
         Me.Name = "MyDB"
         Me.Text = "MyDB"
         CType(Me.Grid1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewEvents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -87,4 +99,5 @@ Partial Class MyDB
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents DataGridViewEvents As DataGridView
 End Class
