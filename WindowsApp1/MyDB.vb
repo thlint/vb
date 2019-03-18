@@ -39,7 +39,7 @@ Public Class MyDB
         MyCount = CInt(MyDBForm2.TextBox1.Text)
         r = MyDBForm2.DialogResult
         Form2.Close()
-
+        ' Ненужный комментарий
         If r <> DialogResult.OK Then
             Exit Sub
         End If
